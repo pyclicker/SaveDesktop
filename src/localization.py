@@ -52,6 +52,9 @@ settings = Gio.Settings.new_with_path("io.github.vikdevelop.SaveDesktop", "/io/g
 # Get user download dir
 download_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOWNLOAD)
 
+# Get DE/WM
+dewm = os.getenv('XDG_CURRENT_DESKTOP')
+
 # Check, if the app is running in the sandbox (Flatpak or Snap)
 if flatpak:
     try:

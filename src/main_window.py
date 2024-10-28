@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 from threading import Thread
 from gi.repository import Gtk, Adw, Gio, GLib
-from localization import _, home, download_dir
+from localization import _, home, download_dir, dewm
 from open_wiki import *
 from shortcuts_window import *
 
@@ -105,7 +105,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.toast.set_timeout(0)
         
         # Check the user's current desktop
-        desktop_env = os.getenv('XDG_CURRENT_DESKTOP')
         desktop_map = {
             'GNOME': 'GNOME',
             'zorin:GNOME': 'GNOME',
@@ -129,8 +128,8 @@ class MainWindow(Adw.ApplicationWindow):
             self.sync_desktop()
             self.connect("close-request", self.on_close)
 
-        if desktop_env in desktop_map:
-            setup_environment(desktop_map[desktop_env])
+        if dewm in desktop_map:
+            setup_environment(desktop_map[dewm])
         else:
             # Handle unsupported desktop environments
             self.toolbarview.add_top_bar(self.errHeaderbar)
